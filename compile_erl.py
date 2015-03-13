@@ -19,6 +19,9 @@ def add_arguments():
 		type=str,
 		help="If the function(s) you wish to execute is/are something other than main.",
 		nargs='+')
+	parser.add_argument("-e", "--Erlang",
+		type=str,
+		help="If starting the Erlang shell is something other than 'erl'")
 	return parser.parse_args()
 ##################################################################################
 ##################################################################################
@@ -28,8 +31,14 @@ def compile_erl(args):
 	module = (args.File).split('.erl')		# Get the name of the module
 	compiled = "c(" + module[0] + "). "		# Compile the file in the erlang shell
 
+	# Check to see what the erl shell command is
+	if args.Erlang == None:
+		erl_shell = "erl"
+	else:
+		erl_shell = args.Erlang
+
 	# Start the shell
-	erl = subprocess.Popen(["erl"],
+	erl = subprocess.Popen([erl_shell],
 		stdin=PIPE)
 
 	# Pause to let the shell start
@@ -59,6 +68,9 @@ def run_funcs(args,module,erl):
 			new_func = module + ":" + func + "(). "
 			erl.stdin.write(new_func)
 			sleep(0.1)
+
+	# Exit the shell
+	erl.kill()
 ##################################################################################
 ##################################################################################
 # Open the .erl file compile and run it
