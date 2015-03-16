@@ -13,5 +13,3 @@ python compile_epython compile_erl.py -f test.erl -m main test testsrl.py -f tes
 
 The line below tests just the main function by omitting optional arguements
 python compile_erl.py -f test.erl
-
-Feel free to modify to suit your needs. Please give credit if you decide to use the file!
