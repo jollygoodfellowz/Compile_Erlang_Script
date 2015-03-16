@@ -7,3 +7,4 @@
 	main() -> io:fwrite("hello, world\n"). 
 	test() -> io:fwrite("test\n"). 
 	tests() -> io:fwrite("testsssss\n"). 
+

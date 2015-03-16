@@ -2,7 +2,6 @@
 # This file compiles erlang files through a script
 import sys
 import subprocess
-from subprocess import PIPE
 from time import sleep
 import argparse
 
@@ -39,7 +38,7 @@ def compile_erl(args):
 
 	# Start the shell
 	erl = subprocess.Popen([erl_shell],
-		stdin=PIPE)
+		stdin=subprocess.PIPE)
 
 	# Pause to let the shell start
 	sleep(0.1)
@@ -59,18 +58,18 @@ def run_funcs(args,module,erl):
 
 	# If no argument was provided we assume main is the function we wish to execute
 	if args.Main == None:
-		main = module + ":main(). "
-		erl.stdin.write(main)
+		func = "main"
+		main = module + ":" + func + "(). "
+		erl.communicate(main)
 
 	# Otherwise we will execute the functions provided in -m
 	else:
 		for func in args.Main:
 			new_func = module + ":" + func + "(). "
 			erl.stdin.write(new_func)
+			sys.stdout.flush()
 			sleep(0.1)
-
-	# Exit the shell
-	erl.kill()
+			
 ##################################################################################
 ##################################################################################
 # Open the .erl file compile and run it

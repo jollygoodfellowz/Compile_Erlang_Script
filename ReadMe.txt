@@ -10,4 +10,13 @@ In compile_erl.txt we make a few assumptions.
 
 3)Lastly, we assume that to open the erlang shell your command line takes the command "erl". That's it!
 
+If you wish to test out the script run this command from the directory in the command line
+
+The line below tests all three functions in the file
+python compile_erl.py -f test.erl -m main test tests
+
+The line below tests just the main function by omitting the -m arguement
+python compile_erl.py -f test.erl
+
+
 Feel free to modify to suit your needs. Please give credit if you decide to use the file!
