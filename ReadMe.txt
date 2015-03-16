@@ -8,14 +8,13 @@ In compile_erl.txt we make a few assumptions.
 
 2)Secondly we assume the file only has one occurence of .erl. 
 
-3)Lastly, we assume that to open the erlang shell your command line takes the command "erl". That's it!
 
 If you wish to test out the script run this command from the directory in the command line
 
-The line below tests all three functions in the file
-python compile_erl.py -f test.erl -m main test tests
+The line below tests three functions and compiles two modules
+python compile_epython compile_erl.py -f test.erl -m main test testsrl.py -f test.erl -m main test tests
 
-The line below tests just the main function by omitting the -m arguement
+The line below tests just the main function by omitting optional arguements
 python compile_erl.py -f test.erl
 
 
